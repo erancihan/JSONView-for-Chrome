@@ -1,16 +1,16 @@
 {
+  "manifest_version": 3,
   "name": "JSONView",
   "icons": {
 	"16": "jsonview16.png",
 	"48": "jsonview48.png",
-    "128": "jsonview128.png"},
+    "128": "jsonview128.png"
+  },
   "version": "0.0.32.2",
   "description": "Validate and view JSON documents",
   "options_page": "options.html",
   "background" : {
-    "scripts": [
-      "background.js"
-    ]
+    "service_worker": "background.js"
   },
   "content_scripts": [{
 	  "matches": ["http://*/*", "https://*/*", "ftp://*/*", "file:///*"],
@@ -18,14 +18,17 @@
 	  "run_at" : "document_end",
 	  "all_frames" : true
   }],
-  "web_accessible_resources": [
-    "jsonview.css",
-    "jsonview-core.css",
-    "content_error.css",
-    "options.png",
-    "close_icon.gif",
-    "error.gif"
-  ],
+  "web_accessible_resources": [{
+    "resources": [
+      "jsonview.css",
+      "jsonview-core.css",
+      "content_error.css",
+      "options.png",
+      "close_icon.gif",
+      "error.gif"
+    ],
+    "matches": ["<all_urls>"]
+  }],
   "permissions" : ["clipboardWrite", "http://*/", "contextMenus", "https://*/", "ftp://*/"],
-  "manifest_version": 2
+  "minimum_chrome_version": "88"
 }
